@@ -15,7 +15,7 @@ const app = express();
 
 
 app.use(cors({
-  origin: ["http://localhost:5173", "https://your-frontend.netlify.app"], 
+  origin: ["https://wondrous-biscotti-15eb28.netlify.app"], 
 }));
 
 app.use(express.json());
