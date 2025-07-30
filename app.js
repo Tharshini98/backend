@@ -22,7 +22,7 @@ const app = express();
 
 app.use(cors({
   origin: [
-    'https://radiant-chaja-4849f9.netlify.app',
+    'https://whimsical-sfogliatella-3cfab2.netlify.app',
     'http://localhost:5173'
   ],
   credentials: true,

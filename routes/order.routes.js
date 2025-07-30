@@ -1,18 +1,16 @@
-const express = require('express');
-const router = express.Router();
-
+const express = require("express");
 const {
   placeOrder,
-  getBuyerOrders,
+  getMyOrders,
   getSellerOrders,
-} = require('../controllers/order.controller');
+} = require("../controllers/order.controller");
+const verifyToken = require("../middlewares/verifyToken");
 
-const { protect } = require('../middlewares/auth.middleware');
 
+const router = express.Router();
 
-router.post('/place', protect, placeOrder);
-router.get('/buyer', protect, getBuyerOrders);
-
-router.get('/seller', protect, getSellerOrders);
+router.post("/", verifyToken, placeOrder);
+router.get("/", verifyToken, getMyOrders);
+router.get("/seller", verifyToken, getSellerOrders);
 
 module.exports = router;
