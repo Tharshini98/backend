@@ -15,9 +15,10 @@ const app = express();
 
 
 app.use(cors({
-  origin: ["https://wondrous-biscotti-15eb28.netlify.app"], 
+  origin: "https://wondrous-biscotti-15eb28.netlify.app", 
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
 }));
-
 app.use(express.json());
 
 app.get('/', (req, res) => {
