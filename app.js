@@ -7,19 +7,22 @@ const productRoutes = require('./routes/product.routes.js');
 const cartRoutes = require('./routes/cart.routes.js');
 const orderRoutes = require('./routes/order.routes.js');
 const paymentRoutes = require('./routes/payment.routes.js');
+const sellerRoutes = require('./routes/seller.routes.js'); 
 
 dotenv.config();
 connectDB();
 
 const app = express();
 
-
 app.use(cors({
-  origin: ['https://elaborate-bublanina-e0a919.netlify.app',
-  'http://localhost:5173'],
+  origin: [
+    'https://elaborate-bublanina-e0a919.netlify.app',
+    'http://localhost:5173'
+  ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
 }));
+
 app.use(express.json());
 
 app.get('/', (req, res) => {
@@ -31,6 +34,7 @@ app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/payment', paymentRoutes);
+app.use('/api/seller', sellerRoutes); 
 
 app.listen(process.env.PORT, () => {
   console.log(`Server running on port ${process.env.PORT}`);
