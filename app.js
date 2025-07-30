@@ -2,12 +2,17 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors'); 
 const connectDB = require('./config/db.js');
-const authRoutes = require('./routes/auth.routes.js');
-const productRoutes = require('./routes/product.routes.js');
-const cartRoutes = require('./routes/cart.routes.js');
-const orderRoutes = require('./routes/order.routes.js');
-const paymentRoutes = require('./routes/payment.routes.js');
-const sellerRoutes = require('./routes/seller.routes.js'); 
+
+
+const getRouter = (mod) => (mod.default ? mod.default : mod);
+
+
+const authRoutes = getRouter(require('./routes/auth.routes.js'));
+const productRoutes = getRouter(require('./routes/product.routes.js'));
+const cartRoutes = getRouter(require('./routes/cart.routes.js'));
+const orderRoutes = getRouter(require('./routes/order.routes.js'));
+const paymentRoutes = getRouter(require('./routes/payment.routes.js'));
+const sellerRoutes = getRouter(require('./routes/seller.routes.js')); 
 
 dotenv.config();
 connectDB();
@@ -28,6 +33,7 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.send('API is running...');
 });
+
 
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
