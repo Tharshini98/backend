@@ -13,6 +13,7 @@ const cartRoutes = getRouter(require('./routes/cart.routes.js'));
 const orderRoutes = getRouter(require('./routes/order.routes.js'));
 const paymentRoutes = getRouter(require('./routes/payment.routes.js'));
 const sellerRoutes = getRouter(require('./routes/seller.routes.js')); 
+const userRoutes = require('./routes/user.routes');
 
 dotenv.config();
 connectDB();
@@ -41,6 +42,7 @@ app.use('/api/cart', cartRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/payment', paymentRoutes);
 app.use('/api/seller', sellerRoutes); 
+app.use('/api/users', userRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server running on port ${process.env.PORT}`);
