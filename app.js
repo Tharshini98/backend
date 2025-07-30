@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const cors = require('cors'); 
 const connectDB = require('./config/db.js');
 const authRoutes = require('./routes/auth.routes.js');
 const productRoutes = require('./routes/product.routes.js');
@@ -11,6 +12,12 @@ dotenv.config();
 connectDB();
 
 const app = express();
+
+
+app.use(cors({
+  origin: ["http://localhost:5173", "https://your-frontend.netlify.app"], 
+}));
+
 app.use(express.json());
 
 app.get('/', (req, res) => {
